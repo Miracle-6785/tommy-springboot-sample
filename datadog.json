@@ -1,0 +1,986 @@
+{
+  "title": "Amazon Fargate Overview",
+  "description": "## Amazon Fargate\n\nThis dashboard displays key metrics from your Amazon ECS cluster on AWS Fargate, such as cpu, memory, IO usage, network and Ephemeral Storage\n\nFurther reading on ECS-Fargate:\n\n- [Datadog ECS-Fargate integration docs](https://docs.datadoghq.com/integrations/ecs_fargate/)\n- [Integration setup docs](https://docs.datadoghq.com/integrations/faq/integration-setup-ecs-fargate/?tab=rediswebui)\n",
+  "widgets": [
+    {
+      "id": 0,
+      "layout": {
+        "x": 1,
+        "y": 1,
+        "width": 11,
+        "height": 8
+      },
+      "definition": {
+        "type": "image",
+        "url": "/static/images/logos/aws-fargate_avatar.svg",
+        "sizing": "fit",
+        "margin": "small"
+      }
+    },
+    {
+      "id": 1,
+      "layout": {
+        "x": 98,
+        "y": 9,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Total CPU time consumed per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.cpu.user{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 2,
+      "layout": {
+        "x": 98,
+        "y": 2,
+        "width": 95,
+        "height": 5
+      },
+      "definition": {
+        "type": "note",
+        "content": "CPU",
+        "background_color": "gray",
+        "font_size": "24",
+        "text_align": "center",
+        "show_tick": true,
+        "tick_pos": "50%",
+        "tick_edge": "bottom"
+      }
+    },
+    {
+      "id": 3,
+      "layout": {
+        "x": 146,
+        "y": 9,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "CPU percent usage per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.cpu.percent{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 4,
+      "layout": {
+        "x": 13,
+        "y": 2,
+        "width": 83,
+        "height": 5
+      },
+      "definition": {
+        "type": "note",
+        "content": "Memory",
+        "background_color": "gray",
+        "font_size": "24",
+        "text_align": "center",
+        "show_tick": true,
+        "tick_pos": "50%",
+        "tick_edge": "bottom"
+      }
+    },
+    {
+      "id": 5,
+      "layout": {
+        "x": 1,
+        "y": 42,
+        "width": 95,
+        "height": 5
+      },
+      "definition": {
+        "type": "note",
+        "content": "IO Read/Write",
+        "background_color": "gray",
+        "font_size": "24",
+        "text_align": "center",
+        "show_tick": true,
+        "tick_pos": "50%",
+        "tick_edge": "bottom"
+      }
+    },
+    {
+      "id": 6,
+      "layout": {
+        "x": 1,
+        "y": 9,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average memory usage per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.mem.usage{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 7,
+      "layout": {
+        "x": 1,
+        "y": 49,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average number of read operations per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.io.ops.read{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 8,
+      "layout": {
+        "x": 49,
+        "y": 49,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average number of write operations per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.io.ops.write{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 9,
+      "layout": {
+        "x": 1,
+        "y": 65,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average number of bytes read per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.io.bytes.read{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 10,
+      "layout": {
+        "x": 49,
+        "y": 65,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average number of bytes write per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.io.bytes.write{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 11,
+      "layout": {
+        "x": 49,
+        "y": 9,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average memory cache per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.mem.cache{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 12,
+      "layout": {
+        "x": 1,
+        "y": 25,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average # of charging events to the mem cgroup",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.mem.pgpgin{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 13,
+      "layout": {
+        "x": 49,
+        "y": 25,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average # of bytes of anonymous and swap cache memory",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.mem.rss{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 14,
+      "layout": {
+        "x": 98,
+        "y": 26,
+        "width": 96,
+        "height": 5
+      },
+      "definition": {
+        "type": "note",
+        "content": "Network",
+        "background_color": "gray",
+        "font_size": "24",
+        "text_align": "center",
+        "show_tick": true,
+        "tick_pos": "50%",
+        "tick_edge": "bottom"
+      }
+    },
+    {
+      "id": 15,
+      "layout": {
+        "x": 98,
+        "y": 33,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average bytes sent per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.net.bytes_sent{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 16,
+      "layout": {
+        "x": 147,
+        "y": 33,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average bytes received per container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.net.bytes_rcvd{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 17,
+      "layout": {
+        "x": 98,
+        "y": 49,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average ingoing packets dropped by container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.net.packet.in_dropped{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 18,
+      "layout": {
+        "x": 147,
+        "y": 49,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average outgoing packets dropped by container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.net.packet.out_dropped{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 19,
+      "layout": {
+        "x": 98,
+        "y": 65,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average sent errors by container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.net.sent_errors{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 20,
+      "layout": {
+        "x": 147,
+        "y": 65,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average received errors by container",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": false,
+        "legend_size": "0",
+        "type": "timeseries",
+        "requests": [
+          {
+            "response_format": "timeseries",
+            "queries": [
+              {
+                "data_source": "metrics",
+                "name": "query1",
+                "query": "avg:ecs.fargate.net.rcvd_errors{ecs_container_name:tommy-test-springboot-svc} by {ecs_container_name}"
+              }
+            ],
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ],
+        "yaxis": {
+          "label": "",
+          "scale": "linear",
+          "include_zero": true,
+          "min": "auto",
+          "max": "auto"
+        },
+        "custom_links": []
+      }
+    },
+    {
+      "id": 3114557731825634,
+      "layout": {
+        "x": 1,
+        "y": 82,
+        "width": 95,
+        "height": 5
+      },
+      "definition": {
+        "type": "note",
+        "content": "Ephemeral Storage",
+        "background_color": "gray",
+        "font_size": "24",
+        "text_align": "center",
+        "show_tick": true,
+        "tick_pos": "50%",
+        "tick_edge": "bottom"
+      }
+    },
+    {
+      "id": 256850209781962,
+      "layout": {
+        "x": 1,
+        "y": 89,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Reserved MiB of Ephemeral Storage per task, cluster",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_layout": "auto",
+        "legend_columns": ["avg", "min", "max", "value", "sum"],
+        "type": "timeseries",
+        "requests": [
+          {
+            "formulas": [
+              {
+                "formula": "query1"
+              }
+            ],
+            "queries": [
+              {
+                "name": "query1",
+                "data_source": "metrics",
+                "query": "avg:ecs.fargate.ephemeral_storage.reserved{*} by {task_name,cluster_name}"
+              }
+            ],
+            "response_format": "timeseries",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "id": 6562039189475188,
+      "layout": {
+        "x": 49,
+        "y": 89,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Average # of utilized MiB of Ephemeral Storage per task, cluster",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_layout": "auto",
+        "legend_columns": ["avg", "min", "max", "value", "sum"],
+        "type": "timeseries",
+        "requests": [
+          {
+            "formulas": [
+              {
+                "formula": "query1"
+              }
+            ],
+            "queries": [
+              {
+                "name": "query1",
+                "data_source": "metrics",
+                "query": "avg:ecs.fargate.ephemeral_storage.utilized{*} by {task_name,cluster_name}"
+              }
+            ],
+            "response_format": "timeseries",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2841847602733776,
+      "layout": {
+        "x": 98,
+        "y": 82,
+        "width": 96,
+        "height": 5
+      },
+      "definition": {
+        "type": "note",
+        "content": "Task",
+        "background_color": "gray",
+        "font_size": "24",
+        "text_align": "center",
+        "show_tick": true,
+        "tick_pos": "50%",
+        "tick_edge": "bottom"
+      }
+    },
+    {
+      "id": 2968193745830470,
+      "layout": {
+        "x": 98,
+        "y": 89,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Task CPU Limit (shared by all containers)",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_layout": "auto",
+        "legend_columns": ["avg", "min", "max", "value", "sum"],
+        "type": "timeseries",
+        "requests": [
+          {
+            "formulas": [
+              {
+                "formula": "query1"
+              }
+            ],
+            "queries": [
+              {
+                "name": "query1",
+                "data_source": "metrics",
+                "query": "avg:ecs.fargate.cpu.task.limit{*}"
+              }
+            ],
+            "response_format": "timeseries",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4420041363122044,
+      "layout": {
+        "x": 147,
+        "y": 89,
+        "width": 47,
+        "height": 15
+      },
+      "definition": {
+        "title": "Task Memory Limit (shared by all containers)",
+        "title_size": "16",
+        "title_align": "left",
+        "show_legend": true,
+        "legend_layout": "auto",
+        "legend_columns": ["avg", "min", "max", "value", "sum"],
+        "type": "timeseries",
+        "requests": [
+          {
+            "formulas": [
+              {
+                "formula": "query1"
+              }
+            ],
+            "queries": [
+              {
+                "name": "query1",
+                "data_source": "metrics",
+                "query": "avg:ecs.fargate.mem.task.limit{*}"
+              }
+            ],
+            "response_format": "timeseries",
+            "style": {
+              "palette": "dog_classic",
+              "line_type": "solid",
+              "line_width": "normal"
+            },
+            "display_type": "line"
+          }
+        ]
+      }
+    }
+  ],
+  "template_variables": [],
+  "layout_type": "free",
+  "notify_list": []
+}
