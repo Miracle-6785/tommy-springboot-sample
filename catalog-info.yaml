@@ -20,7 +20,7 @@ metadata:
 
     
     
-    dependencytrack/project-id: ""
+    dependencytrack/project-id: "9abde365-34ec-4b1d-b581-f8330936ccf4"
     
     backstage.io/techdocs-ref: dir:.
 spec:
